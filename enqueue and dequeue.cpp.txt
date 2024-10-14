@@ -1,0 +1,78 @@
+#include<iostream>
+using namespace std;
+struct Node{
+    int data;
+    Node*next;
+};
+Node*front=nullptr;
+Node*rear=nullptr;
+void enqueue (int value)
+{
+    Node* newNode=new Node();
+    newNode->data=value;
+    newNode->next=nullptr;
+    if(front==nullptr)
+    {
+        front=rear=newNode;
+        cout<<"Enqueued:"<<value<<endl;
+    }
+    else
+    {
+        rear->next=newNode;
+        rear=newNode;
+        cout<<"Enqueue:"<<value<<endl;
+    }
+}
+int dequeue()
+{
+    if(front==nullptr)
+    {
+        cout<<"Underfloe"<<endl;
+        return-1;
+    }
+    else{
+        int value=front->data;
+        Node*temp=front;
+        front=front->next;
+        if(front==nullptr)
+        {
+            rear=nullptr;
+        }
+        delete temp;
+        cout<<"Dequeued:"<<value<<endl;
+        return value;
+        
+    }
+    }
+    void display()
+        {
+            if(front==nullptr)
+            {
+                cout<<"Queue is Empty\n";
+                
+            }
+            else
+            {
+                cout<<"Queue Of Element:";
+                Node* temp=front;
+                while(temp!=nullptr)
+                {
+                    cout<<temp->data<<" ";
+                    temp=temp->next;
+                }
+                cout<<endl;
+            }
+        }
+        int main()
+        {
+            enqueue(10);
+            enqueue(20);
+            enqueue(30);
+            enqueue(40);
+            display();
+            dequeue();
+            dequeue();
+            display();
+            return 0;
+            
+        }
